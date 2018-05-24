@@ -34,4 +34,9 @@ is_training = tf.placeholder(tf.bool)
 def leakyrelu(x, alpha=0.2):
     return 0.5 * (1 + alpha) * x + 0.5 * (1 - alpha) * abs(x)
 
+# Generator Network
+# Input: Noise, Output: Image
+# Note that batch normalization has different behavior at training and inference time,
+# we then use a placeholder to indicates the layer if we are training or not.
+def generator(x, reuse=False):
 
