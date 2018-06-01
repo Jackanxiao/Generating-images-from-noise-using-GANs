@@ -57,3 +57,7 @@ def generator(x, reuse=False):
         # Apply tanh for better stability - clip values to [-1, 1].
         x = tf.nn.tanh(x)
         return x
+
+# Discriminator Network
+# Input: Image, Output: Prediction Real/Fake Image
+def discriminator(x, reuse=False):
