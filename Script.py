@@ -61,3 +61,11 @@ def generator(x, reuse=False):
 # Discriminator Network
 # Input: Image, Output: Prediction Real/Fake Image
 def discriminator(x, reuse=False):
+    with tf.variable_scope('Discriminator', reuse=reuse):
+        # Typical convolutional neural network to classify images.
+        x = tf.layers.conv2d(x, 64, 5, strides=2, padding='same')
+        x = tf.layers.batch_normalization(x, training=is_training)
+        x = leakyrelu(x)
+        x = tf.layers.conv2d(x, 128, 5, strides=2, padding='same')
+        x = tf.layers.batch_normalization(x, training=is_training)
+        x = leakyrelu(x)
