@@ -74,3 +74,7 @@ def discriminator(x, reuse=False):
         x = tf.layers.dense(x, 1024)
         x = tf.layers.batch_normalization(x, training=is_training)
         x = leakyrelu(x)
+        # Output 2 classes: Real and Fake images
+        x = tf.layers.dense(x, 2)
+    return x
+
