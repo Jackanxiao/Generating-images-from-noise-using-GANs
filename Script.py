@@ -78,3 +78,5 @@ def discriminator(x, reuse=False):
         x = tf.layers.dense(x, 2)
     return x
 
+# Build Generator Network
+gen_sample = generator(noise_input)
