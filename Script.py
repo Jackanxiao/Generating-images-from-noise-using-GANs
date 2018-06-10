@@ -85,3 +85,7 @@ gen_sample = generator(noise_input)
 # Build 2 Discriminator Networks (one from noise input, one from generated samples)
 disc_real = discriminator(real_image_input)
 disc_fake = discriminator(gen_sample, reuse=True)
+
+# Build the stacked generator/discriminator
+stacked_gan = discriminator(gen_sample, reuse=True)
+
