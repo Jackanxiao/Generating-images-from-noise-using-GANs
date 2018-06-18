@@ -113,3 +113,15 @@ gen_vars = tf.get_collection(tf.GraphKeys.TRAINABLE_VARIABLES, scope='Generator'
 # Discriminator Network Variables
 disc_vars = tf.get_collection(tf.GraphKeys.TRAINABLE_VARIABLES, scope='Discriminator')
 
+# Create training operations
+# TensorFlow UPDATE_OPS collection holds all batch norm operation to update the moving mean/stddev
+gen_update_ops = tf.get_collection(tf.GraphKeys.UPDATE_OPS, scope='Generator')
+# `control_dependencies` ensure that the `gen_update_ops` will be run before the `minimize` op (backprop)
+with tf.control_dependencies(gen_update_ops):
+    train_gen = optimizer_gen.minimize(gen_loss, var_list=gen_vars)
+disc_update_ops = tf.get_collection(tf.GraphKeys.UPDATE_OPS, scope='Discriminator')
+with tf.control_dependencies(disc_update_ops):
+    train_disc = optimizer_disc.minimize(disc_loss, var_list=disc_vars)
+
+# Initialize the variables (i.e. assign their default value)
+init = tf.global_variables_initializer()
