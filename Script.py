@@ -125,3 +125,13 @@ with tf.control_dependencies(disc_update_ops):
 
 # Initialize the variables (i.e. assign their default value)
 init = tf.global_variables_initializer()
+
+
+# Start Training
+# Start a new TF session
+sess = tf.Session()
+
+# Run the initializer
+sess.run(init)
+
+
