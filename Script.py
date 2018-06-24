@@ -189,3 +189,16 @@ Step 9500: Generator Loss: 7.200409, Discriminator Loss: 0.124268
 Step 10000: Generator Loss: 5.479313, Discriminator Loss: 0.191389
 '''
 
+
+
+# Testing# Testi
+# Generate images from noise, using the generator network.
+n = 6
+canvas = np.empty((28 * n, 28 * n))
+for i in range(n):
+    # Noise input.
+    z = np.random.uniform(-1., 1., size=[n, noise_dim])
+    # Generate image from noise.
+    g = sess.run(gen_sample, feed_dict={noise_input: z, is_training:False})
+    # Rescale values to the original [0, 1] (from tanh -> [-1, 1])
+    g = (g + 1.) / 2.
